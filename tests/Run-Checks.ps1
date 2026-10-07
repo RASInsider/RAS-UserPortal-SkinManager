@@ -26,10 +26,17 @@ $fixture = Join-Path $root ('ri-tests-' + [guid]::NewGuid().ToString('N'))
 $previousProgramData = $env:ProgramData
 try {
     $null = [IO.Directory]::CreateDirectory($fixture)
-    foreach ($name in 'Dark Glass','Midnight Blue','Light Glass','RASInsider','Custom') {
+    foreach ($version in '21.2 (build 27429)','21.2.2 (build 27429)','21.2.0','22.0 (build 28102)') {
+        Assert-Check (Test-RIAllowedVersion $version) "Allow RAS version: $version"
+    }
+    foreach ($version in '21.20.2','21.1.2','21.3.0','22.0 (build 27429)','', '21.2.bad') {
+        Assert-Check (-not (Test-RIAllowedVersion $version)) "Reject RAS version: $version"
+    }
+    foreach ($name in 'Dark Glass','Midnight Blue','Light Glass','RASInsider','Graphite','Forest','Warm Ivory','Bordeaux','Aubergine','Liquid Glass','Ruby','Custom') {
         $css = Get-RICss (Get-RIPreset $name)
         Assert-Check ($css -match '--ri-' -and $css -notmatch 'data-v-' -and $css -notmatch 'url\(') "Embedded preset: $name"
     }
+    Assert-Check ((Get-RICss (Get-RIPreset 'Liquid Glass')) -match 'box-shadow: inset' -and (Get-RICss (Get-RIPreset 'Ruby')) -notmatch 'box-shadow: inset') 'Liquid Glass highlights are isolated from other presets'
     $skin = Get-RIPreset; $skin.Accent = '#fff; background:url(https://bad)'
     Assert-Throws { Test-RISkin $skin } 'Reject CSS injection'
     $skin = Get-RIPreset; $skin.Blur = [double]::NaN

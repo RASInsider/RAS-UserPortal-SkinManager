@@ -18,8 +18,29 @@ Describe 'Custom skins and surgical hook' {
         { Test-RISkin $skin } | Should -Throw
     }
     It 'renders all presets standalone' {
-        foreach ($name in 'Dark Glass','Midnight Blue','Light Glass','RASInsider','Custom') {
+        foreach ($name in 'Dark Glass','Midnight Blue','Light Glass','RASInsider','Graphite','Forest','Warm Ivory','Bordeaux','Aubergine','Liquid Glass','Ruby','Custom') {
             Get-RICss (Get-RIPreset $name) | Should -Match '--ri-'
+        }
+    }
+    It 'keeps existing presets identical to their original JSON examples' {
+        foreach ($file in 'dark-glass.json','midnight-blue.json','light-glass.json','rasinsider.json') {
+            $original = Get-Content (Join-Path $root "skins/$file") -Raw | ConvertFrom-Json
+            $current = Get-RIPreset $original.Name
+            foreach ($property in $original.PSObject.Properties) {
+                $current.($property.Name) | Should -Be $property.Value
+            }
+        }
+    }
+    It 'round-trips new JSON examples to the same CSS as embedded presets' {
+        foreach ($file in 'graphite.json','forest.json','warm-ivory.json','bordeaux.json','aubergine.json','liquid-glass.json','ruby.json') {
+            $skin = Get-Content (Join-Path $root "skins/$file") -Raw | ConvertFrom-Json
+            Get-RICss $skin | Should -Be (Get-RICss (Get-RIPreset $skin.Name))
+        }
+    }
+    It 'limits Liquid Glass highlights to the named preset' {
+        Get-RICss (Get-RIPreset 'Liquid Glass') | Should -Match 'box-shadow: inset'
+        foreach ($name in 'Dark Glass','Ruby','Warm Ivory') {
+            Get-RICss (Get-RIPreset $name) | Should -Not -Match 'box-shadow: inset'
         }
     }
     It 'preserves an upgraded current index during restore' {
