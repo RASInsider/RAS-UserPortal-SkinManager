@@ -1,6 +1,36 @@
 # Validation evidence — v0.1.0 preview
 
-Date: 2026-10-07. This separates the user's recorded prototype, read-only browser inspection and newly executed release checks. No live Windows deployment is claimed.
+## Live RAS 21.2 lab validation — 2026-10-07
+
+The updated standalone manager was executed from an elevated Windows broker with installed **RASAdmin 5.0**, connected to **RAS 21.2.2 build 27429**. The discovered enabled Secure Gateway ran **21.2 build 27429**, with `AgentState` reporting `OK`. The Gateway is a separate Windows machine from the broker; explicit existing credentials with Negotiate/WinRM reached that remote target successfully. No authentication or security setting was changed.
+
+The current prototype index, CSS and state were backed up before deployment. The verified physical static root on the Gateway was `C:\Program Files (x86)\Parallels\ApplicationServer\2XHTML5Gateway\www`. The browser loaded the independent `/userportal/rasinsider.css` hook. A successful all-selected-target pre-flight, prepare/commit/verify transaction was observed on this one-Gateway scope.
+
+The actual 21.2 header uses `header.app-header` and lacks `data-testid="app-header"`. The stylesheet supports both contextual anchors. RAS 21.2 also uses an important native text utility reading `--prls-header-contrast-color`; the manager sets that presentation variable to its own primary text color on the header. The RAS-supplied logo remains intact and uses `fill=currentColor`. Product JS/CSS bundles are not edited.
+
+Real screenshots are saved privately on the user's Desktop for editorial use, retaining their own RAS-managed wallpaper and application icons. They are not redistributed as repository assets. All eleven built-in presets completed deployment verification and were captured in the same browser application view. Dark Glass was restored using the saved pre-test skin JSON. Re-apply reported an already-matching configuration, and Status and direct state inspection completed. Live destructive restore/failure/upgrade experiments were not performed.
+
+This live test covers one real Site and one real Gateway. Multiple actual Gateways/HALB, Theme asset changes, product upgrades and failure injection remain untested in the live lab; their local regression fixtures are reported separately below.
+
+## Current development update — theme expansion, 2026-10-07
+
+The sections below retain the historical v0.1.0 evidence. The development PS1 is now **0.1.1-dev**, synchronized byte-for-byte from the user's Desktop working file. It additionally allows RAS 21.2.x and embeds seven new themes, for 11 built-in presets plus Custom. This source update does not alter the v0.1.0 tag/archive.
+
+Checks executed on macOS with PowerShell 7.6.6 against the updated source:
+
+- Parser and filesystem fixture suite: **52/52 passed**.
+- Pester 6.2.0: **17/17 passed**.
+- PSScriptAnalyzer 1.25.0: no Error/Warning diagnostics with repository settings, including Windows PowerShell 5.1 syntax compatibility.
+- All 12 preset/configuration choices generate validated CSS. Optional new JSON examples generate the same CSS as embedded definitions.
+- Original Dark Glass/Midnight Blue/Light Glass/RASInsider definitions match their existing JSON examples. Custom still starts from Dark Glass; existing menu choices 1–5 are preserved.
+- Liquid Glass highlights are isolated from ordinary themes. No asset URL is introduced into generated stylesheets.
+- Existing local transaction, surgical restore, encoding, drift and mocked multi-Gateway rollback fixtures passed.
+
+No Windows/RAS target was contacted by these checks. The seven new themes were initially reviewed in illustrative previews; the later live screenshots are described above. Real-wallpaper contrast, Theme-change survival, disabled/error/focus states, browser fallback and multi-Gateway/HALB rendering remain lab checks. The Desktop working file retains forced Negotiate authentication; the separate previously exercised Kerberos/default-authentication experimental copy is not substituted here. The RAS 21.2.x gate is an allowed-version rule, not proof that every 21.2 build or this exact file was tested remotely.
+
+See [THEMES.md](THEMES.md) for exact colors, numbers, usage and limitations.
+
+Date: 2026-10-07. This separates the user's recorded prototype, read-only browser inspection and newly executed release checks. This historical section describes the original release evidence; live development validation is described above.
 
 ## Executed locally
 

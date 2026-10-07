@@ -1,0 +1,19 @@
+{
+  "SchemaVersion": 1,
+  "Name": "Liquid Glass",
+  "Header": "#EEF4FC",
+  "HeaderOpacity": 0.78,
+  "PanelStart": "#FFFFFF",
+  "StartOpacity": 0.7,
+  "PanelMiddle": "#EDF4FC",
+  "MiddleOpacity": 0.64,
+  "PanelEnd": "#F4F7FC",
+  "EndOpacity": 0.58,
+  "Accent": "#0065D0",
+  "Border": "#FFFFFF",
+  "Primary": "#17283D",
+  "SecondaryOpacity": 0.8,
+  "MutedOpacity": 0.76,
+  "Blur": 36,
+  "Radius": 30
+}

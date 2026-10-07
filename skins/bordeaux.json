@@ -1,0 +1,19 @@
+{
+  "SchemaVersion": 1,
+  "Name": "Bordeaux",
+  "Header": "#21191D",
+  "HeaderOpacity": 0.96,
+  "PanelStart": "#21191D",
+  "StartOpacity": 0.96,
+  "PanelMiddle": "#2D2027",
+  "MiddleOpacity": 0.96,
+  "PanelEnd": "#39252E",
+  "EndOpacity": 0.96,
+  "Accent": "#D6A2B4",
+  "Border": "#7B5968",
+  "Primary": "#FAF2F5",
+  "SecondaryOpacity": 0.78,
+  "MutedOpacity": 0.68,
+  "Blur": 28,
+  "Radius": 22
+}

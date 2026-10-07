@@ -1,0 +1,19 @@
+{
+  "SchemaVersion": 1,
+  "Name": "Ruby",
+  "Header": "#171316",
+  "HeaderOpacity": 0.96,
+  "PanelStart": "#1B171B",
+  "StartOpacity": 0.96,
+  "PanelMiddle": "#302026",
+  "MiddleOpacity": 0.94,
+  "PanelEnd": "#541F2C",
+  "EndOpacity": 0.92,
+  "Accent": "#FF4053",
+  "Border": "#AD4051",
+  "Primary": "#FFF7F8",
+  "SecondaryOpacity": 0.78,
+  "MutedOpacity": 0.68,
+  "Blur": 28,
+  "Radius": 22
+}
