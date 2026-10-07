@@ -53,6 +53,6 @@ Use Install/Change to select a different preset. Re-apply uses saved per-Gateway
 
 ## Validation limits
 
-The palettes were approved through illustrative previews with simplified backgrounds. Those previews are not screenshots of all themes running in RAS. The new presets have not been deployed to the live lab by this update. Review actual wallpaper contrast, sign-in/launcher, active/hover/focus/error/disabled states, responsive layouts and browser backdrop-filter support before rollout. In particular, Liquid Glass transparency depends strongly on the RAS-supplied wallpaper.
+The palettes were approved through illustrative previews with simplified backgrounds. Those previews are not screenshots of all themes running in RAS. All eleven built-in presets were deployed and captured in the real single-Gateway RAS 21.2.2 build 27429 lab on 2026-10-07. Dark Glass was restored from the saved pre-test configuration afterwards. See VALIDATION.md for scope and limitations. Review actual wallpaper contrast, sign-in/launcher, active/hover/focus/error/disabled states, responsive layouts and browser backdrop-filter support before rollout. In particular, Liquid Glass transparency depends strongly on the RAS-supplied wallpaper.
 
 Original presets are unchanged. The v0.1.0 tag/archive is unchanged; the theme expansion is development source 0.1.1-dev.
