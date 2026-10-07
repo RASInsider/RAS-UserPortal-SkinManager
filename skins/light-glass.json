@@ -1,0 +1,19 @@
+{
+  "SchemaVersion": 1,
+  "Name": "Light Glass",
+  "Header": "#F2F7FF",
+  "HeaderOpacity": 0.96,
+  "PanelStart": "#FFFFFF",
+  "StartOpacity": 0.96,
+  "PanelMiddle": "#EFF5FF",
+  "MiddleOpacity": 0.96,
+  "PanelEnd": "#E7EFFF",
+  "EndOpacity": 0.96,
+  "Accent": "#175EBA",
+  "Border": "#175EBA",
+  "Primary": "#15243A",
+  "SecondaryOpacity": 0.85,
+  "MutedOpacity": 0.78,
+  "Blur": 28,
+  "Radius": 22
+}
