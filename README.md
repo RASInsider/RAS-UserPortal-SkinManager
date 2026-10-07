@@ -2,9 +2,9 @@
 
 **Independent community project by RASInsider. Not affiliated with, endorsed by or supported by Parallels. This modifies local User Portal presentation and is not an official supported extension.**
 
-**Development preview 0.1.1-dev. Independent and unsupported.** The current standalone script allows RAS 21.2.x and RAS 22.0 Technical Preview build 28102. Allowing a version is not a claim that every build has been tested. The original presentation baseline is build 28102. The seven additional themes have passed local code/configuration checks; live rendering on RAS remains to be verified. Read [validation evidence](docs/VALIDATION.md).
+**Development preview 0.1.1-dev. Independent and unsupported.** The current standalone script allows RAS 21.2.x and RAS 22.0 Technical Preview build 28102. Allowing a version is not a claim that every build has been tested. The original presentation baseline is build 28102. The eleven built-in themes were deployed and captured on a real RAS 21.2.2 build 27429 lab with RASAdmin 5.0; the live scope is one Site and one separate Secure Gateway. Read [validation evidence](docs/VALIDATION.md).
 
-The existing **v0.1.0** tag/package is unchanged and does not contain this development update. For the new themes, download the current source PS1 from this branch after review; do not expect the old release archive to contain them.
+The existing **v0.1.0** tag/package is unchanged and does not contain this development update. For the new themes, download the current source PS1 after review; do not expect the old release archive to contain them.
 
 A standalone PowerShell manager for consistent presentation across discovered RAS Secure Gateways. RAS owns logos, wallpaper, favicon, title and text; this tool owns an independent stylesheet and a small marked HTML hook. Compiled product bundles and RAS configuration are untouched.
 
@@ -67,7 +67,7 @@ Embedded presets: **Dark Glass, Midnight Blue, Light Glass, RASInsider, Graphite
 - State, transactions/backups and logs live in `%ProgramData%\RASInsider\RAS-UserPortal-SkinManager\` on each target and the coordinator. Backups are retained for manual review; there is no automatic retention cleanup in v0.1.0.
 - Existing unmarked links, duplicate/malformed markers, unexpected content inside a marker, conflicting state identities, reparse points and unsupported index encodings abort automatic edits.
 - WinRM is the implemented transport. SMB is a possible future adapter, not a shipped feature. IPv6 literal hostnames, Linux Gateways and automatically inferred HALB membership are outside this preview.
-- Local file/hook/hash verification is implemented. Direct HTTPS serving, cache behavior, RAS Theme change, accessibility and Windows ACL/runtime checks must be verified in the live lab. The script does not infer those from a successful file write.
+- Local file/hook/hash verification is implemented. Live deployment, served CSS and browser palette captures are documented for the tested single-Gateway lab. RAS Theme changes, broader accessibility coverage and other Windows ACL/runtime environments still require validation. The script does not infer those from a successful file write.
 
 Read [how it works](docs/HOW-IT-WORKS.md), [custom skins](docs/CUSTOM-SKINS.md), [multi-Gateway discovery](docs/MULTI-GATEWAY.md), [recovery](docs/RECOVERY.md) and [validation](docs/VALIDATION.md).
 

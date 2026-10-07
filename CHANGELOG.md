@@ -11,7 +11,10 @@
 - Document exact palettes, opacity, CLI/menu usage, compatibility limits and the difference between the development source and the unchanged v0.1.0 release.
 - Expand local fixtures and Pester coverage for every theme, original-preset stability and Liquid Glass-specific CSS isolation. Include optional JSON examples for the seven new presets.
 
-The deployed assets, RASAdmin discovery, WinRM authentication, transaction/rollback, current-index restore and branding ownership architecture are unchanged by the theme additions. The Desktop script retains explicit Negotiate remoting authentication; this update does not import an unrelated experimental authentication change. No live deployment or new release is performed by this source update.
+- Support the verified RAS 21.2 `header.app-header` anchor and its native header contrast variable; retain the RAS-supplied logo.
+- Execute deployment from a separate Windows broker to a real RAS 21.2.2 build 27429 Gateway using RASAdmin 5.0 and explicit existing WinRM credentials. See docs/VALIDATION.md for exact scope and remaining limitations.
+
+The deployed assets, RASAdmin discovery, WinRM authentication, transaction/rollback, current-index restore and branding ownership architecture are unchanged by the theme additions. The Desktop script retains explicit Negotiate remoting authentication; this update does not import an unrelated experimental authentication change. The historical v0.1.0 release archive remains unchanged.
 
 ## v0.1.0 — 2026-10-07 (preview)
 

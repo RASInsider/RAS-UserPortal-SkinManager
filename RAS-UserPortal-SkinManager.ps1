@@ -189,6 +189,7 @@ function Get-RICss {
     $body = @'
 }
 :is([data-testid="app-header"], header.app-header) {
+  --prls-header-contrast-color: var(--ri-text-primary) !important;
   background: var(--ri-header-bg) !important;
   color: var(--ri-text-primary) !important;
   -webkit-backdrop-filter: blur(var(--ri-blur)) saturate(150%);
