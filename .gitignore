@@ -1,0 +1,12 @@
+*.log
+*.jsonl
+TestResults*
+ri-tests-*/
+state.json
+active-transaction.json
+transactions/
+coordinator/
+*.before
+*.after
+*.tmp
+.DS_Store
