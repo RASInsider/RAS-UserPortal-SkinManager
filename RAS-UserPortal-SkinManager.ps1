@@ -188,15 +188,16 @@ function Get-RICss {
     # candidates and must be checked in the target DOM; no generated Vue scope IDs.
     $body = @'
 }
-[data-testid="app-header"] {
+:is([data-testid="app-header"], header.app-header) {
   background: var(--ri-header-bg) !important;
   color: var(--ri-text-primary) !important;
   -webkit-backdrop-filter: blur(var(--ri-blur)) saturate(150%);
   backdrop-filter: blur(var(--ri-blur)) saturate(150%);
   border-bottom: 1px solid var(--ri-border);
 }
+/* RAS 21.2 build 27429 uses header.app-header without app-header data-testid. */
 /* currentColor belongs to the RAS-supplied inline logo; do not replace assets. */
-[data-testid="app-header"] [aria-label] > div > svg {
+:is([data-testid="app-header"], header.app-header) [aria-label] > div > svg {
   color: var(--ri-text-primary);
 }
 .login-container .login-form[class] {
@@ -235,12 +236,12 @@ function Get-RICss {
 #launcher [role="row"]:hover, #launcher [role="option"]:hover,
 #launcher [role="tab"]:hover { background: var(--ri-hover); }
 #launcher [role="tab"][aria-selected="true"],
-[data-testid="app-header"] [aria-current="page"] {
+:is([data-testid="app-header"], header.app-header) [aria-current="page"] {
   color: var(--ri-accent) !important;
   border-bottom: 2px solid var(--ri-accent);
 }
 #launcher :focus-visible, .login-container .login-form[class] :focus-visible,
-[data-testid="app-header"] :focus-visible {
+:is([data-testid="app-header"], header.app-header) :focus-visible {
   outline: 2px solid var(--ri-accent);
   outline-offset: 3px;
 }
@@ -269,7 +270,7 @@ function Get-RICss {
 .login-container .login-form[class] input { border-radius: 12px; }
 .login-container .login-form[class] .button { border-radius: 11px; }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  [data-testid="app-header"], .login-container .login-form[class], #launcher {
+  :is([data-testid="app-header"], header.app-header), .login-container .login-form[class], #launcher {
     background: var(--ri-fallback-bg) !important;
   }
 }
@@ -282,7 +283,7 @@ function Get-RICss {
 .login-container .login-form[class], #launcher {
   box-shadow: inset 0 2px 1px rgba(255,255,255,.90), inset 1px 0 1px rgba(255,255,255,.70), inset 0 -1px 1px rgba(255,255,255,.55), 0 22px 55px rgba(16,39,68,.25);
 }
-[data-testid="app-header"] {
+:is([data-testid="app-header"], header.app-header) {
   box-shadow: inset 0 1px 0 rgba(255,255,255,.85);
 }
 #launcher input, #launcher .launcher-search input {
