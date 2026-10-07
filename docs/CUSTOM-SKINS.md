@@ -2,6 +2,8 @@
 
 The main PS1 embeds all presets. JSON files are import examples, not runtime dependencies. Interactive Custom starts from Dark Glass and prompts for each color/number. Non-interactive Custom requires `-SkinFile`.
 
+There are now **11 built-in themes plus Custom**. See [THEMES.md](THEMES.md) for the palette catalog, menu numbers and Liquid Glass behavior. Schema version 1 is unchanged. The new JSON examples contain the same validated configuration as their embedded presets.
+
 ## Schema version 1
 
 | Property | Type / range | Dark Glass |

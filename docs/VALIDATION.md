@@ -1,5 +1,23 @@
 # Validation evidence — v0.1.0 preview
 
+## Current development update — theme expansion, 2026-10-07
+
+The sections below retain the historical v0.1.0 evidence. The development PS1 is now **0.1.1-dev**, synchronized byte-for-byte from the user's Desktop working file. It additionally allows RAS 21.2.x and embeds seven new themes, for 11 built-in presets plus Custom. This source update does not alter the v0.1.0 tag/archive.
+
+Checks executed on macOS with PowerShell 7.6.6 against the updated source:
+
+- Parser and filesystem fixture suite: **52/52 passed**.
+- Pester 6.2.0: **17/17 passed**.
+- PSScriptAnalyzer 1.25.0: no Error/Warning diagnostics with repository settings, including Windows PowerShell 5.1 syntax compatibility.
+- All 12 preset/configuration choices generate validated CSS. Optional new JSON examples generate the same CSS as embedded definitions.
+- Original Dark Glass/Midnight Blue/Light Glass/RASInsider definitions match their existing JSON examples. Custom still starts from Dark Glass; existing menu choices 1–5 are preserved.
+- Liquid Glass highlights are isolated from ordinary themes. No asset URL is introduced into generated stylesheets.
+- Existing local transaction, surgical restore, encoding, drift and mocked multi-Gateway rollback fixtures passed.
+
+No Windows/RAS target was contacted by these checks. The seven new themes were reviewed in illustrative previews, not validated as live portal screenshots. Real-wallpaper contrast, Theme-change survival, disabled/error/focus states, browser fallback and multi-Gateway/HALB rendering remain lab checks. The Desktop working file retains forced Negotiate authentication; the separate previously exercised Kerberos/default-authentication experimental copy is not substituted here. The RAS 21.2.x gate is an allowed-version rule, not proof that every 21.2 build or this exact file was tested remotely.
+
+See [THEMES.md](THEMES.md) for exact colors, numbers, usage and limitations.
+
 Date: 2026-10-07. This separates the user's recorded prototype, read-only browser inspection and newly executed release checks. No live Windows deployment is claimed.
 
 ## Executed locally
