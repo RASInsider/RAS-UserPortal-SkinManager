@@ -1,0 +1,25 @@
+name: PowerShell checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  windows-fixtures:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Local parser and filesystem checks
+        shell: pwsh
+        run: ./tests/Run-Checks.ps1
+      - name: Pester and PSScriptAnalyzer
+        shell: pwsh
+        run: |
+          Install-Module Pester -RequiredVersion 6.2.0 -Force -Scope CurrentUser
+          Install-Module PSScriptAnalyzer -RequiredVersion 1.25.0 -Force -Scope CurrentUser
+          Import-Module Pester -RequiredVersion 6.2.0
+          $result = Invoke-Pester ./tests/Manager.Tests.ps1 -PassThru -Output Detailed
+          if ($result.FailedCount) { throw 'Pester checks failed.' }
+          $issues = @(Invoke-ScriptAnalyzer ./RAS-UserPortal-SkinManager.ps1 -Settings ./PSScriptAnalyzerSettings.psd1)
+          $issues | Format-Table -Wrap
+          if ($issues.Count) { throw 'Static analysis failed.' }

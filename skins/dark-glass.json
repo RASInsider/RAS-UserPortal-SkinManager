@@ -1,0 +1,19 @@
+{
+  "SchemaVersion": 1,
+  "Name": "Dark Glass",
+  "Header": "#050C20",
+  "HeaderOpacity": 0.88,
+  "PanelStart": "#050C20",
+  "StartOpacity": 0.94,
+  "PanelMiddle": "#0C1630",
+  "MiddleOpacity": 0.9,
+  "PanelEnd": "#231232",
+  "EndOpacity": 0.88,
+  "Accent": "#4B91FF",
+  "Border": "#4391FF",
+  "Primary": "#FFFFFF",
+  "SecondaryOpacity": 0.72,
+  "MutedOpacity": 0.55,
+  "Blur": 28,
+  "Radius": 22
+}

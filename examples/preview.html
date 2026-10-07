@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RASInsider presentation example</title>
+<link rel="stylesheet" href="dark-glass.css">
+<style>
+body { margin:0; min-height:100vh; background:linear-gradient(120deg,#244469,#704268); font:16px system-ui; }
+header { padding:20px; }
+.login-container { padding:30px; }
+.login-form { max-width:360px; margin:auto; padding:28px; }
+input { display:block; box-sizing:border-box; width:100%; margin:12px 0; padding:12px; }
+button { padding:10px 20px; }
+#launcher { margin:30px auto; padding:24px; max-width:700px; }
+.launcher-tabs { display:flex; gap:24px; margin-bottom:20px; }
+.tab { padding-bottom:12px; position:relative; }
+.tab.current::after { content:""; height:2px; position:absolute; bottom:0; left:0; right:0; }
+.breadcrumbs, .app { padding:12px; }
+p { line-height:1.5; }
+</style>
+</head>
+<body>
+<header data-testid="app-header">Example organization — original demo content</header>
+<div class="login-container"><div class="login-form">
+<h1>Presentation preview</h1>
+<p class="logon-message">Synthetic example. This is not the RAS application or evidence of a live deployment.</p>
+<label>Example username<input placeholder="example user" autocomplete="off"></label>
+<button type="button">Demo button</button>
+</div></div>
+<div id="launcher">
+<div class="launcher-tabs"><div class="tab">Favorites</div><div class="tab current">All Apps</div></div>
+<div data-testid="apps-launcher-search"><input placeholder="Example search"></div>
+<div class="breadcrumbs">Example breadcrumb</div>
+<div class="list"><div class="app"><div data-testid="apps-application-name">Example resource</div><div data-testid="apps-application-description">Original synthetic content; no product assets.</div></div></div>
+</div>
+</body>
+</html>

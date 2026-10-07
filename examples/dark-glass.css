@@ -1,0 +1,104 @@
+/* RASInsider Skin Manager 0.1.0 | Dark Glass | MIT */
+:root {
+  --ri-header-bg: rgba(5,12,32,0.88);
+  --ri-panel-start: rgba(5,12,32,0.94);
+  --ri-panel-middle: rgba(12,22,48,0.9);
+  --ri-panel-end: rgba(35,18,50,0.88);
+  --ri-accent: #4B91FF;
+  --ri-border: #4391FF;
+  --ri-panel-border: rgba(67,145,255,0.65);
+  --ri-launcher-border: rgba(67,145,255,0.55);
+  --ri-fallback-bg: #050C20;
+  --ri-text-primary: #FFFFFF;
+  --ri-text-secondary: rgba(255,255,255,0.72);
+  --ri-text-muted: rgba(255,255,255,0.55);
+  --ri-hover: rgba(75,145,255,0.18);
+  --ri-blur: 28px;
+  --ri-radius: 22px;
+}
+[data-testid="app-header"] {
+  background: var(--ri-header-bg) !important;
+  color: var(--ri-text-primary) !important;
+  -webkit-backdrop-filter: blur(var(--ri-blur)) saturate(150%);
+  backdrop-filter: blur(var(--ri-blur)) saturate(150%);
+  border-bottom: 1px solid var(--ri-border);
+}
+/* currentColor belongs to the RAS-supplied inline logo; do not replace assets. */
+[data-testid="app-header"] [aria-label] > div > svg {
+  color: var(--ri-text-primary);
+}
+.login-container .login-form[class] {
+  padding: 2rem;
+  background: linear-gradient(145deg, var(--ri-panel-start) 0%, var(--ri-panel-middle) 55%, var(--ri-panel-end) 100%) !important;
+  color: var(--ri-text-primary) !important;
+  border: 1px solid var(--ri-panel-border);
+  border-radius: var(--ri-radius) !important;
+  -webkit-backdrop-filter: blur(var(--ri-blur)) saturate(150%);
+  backdrop-filter: blur(var(--ri-blur)) saturate(150%);
+}
+#launcher {
+  border: 1px solid var(--ri-launcher-border);
+  border-radius: var(--ri-radius);
+  -webkit-backdrop-filter: blur(var(--ri-blur)) saturate(150%);
+  backdrop-filter: blur(var(--ri-blur)) saturate(150%);
+  background: linear-gradient(145deg, var(--ri-panel-start) 0%, var(--ri-panel-middle) 55%, var(--ri-panel-end) 100%) !important;
+  color: var(--ri-text-primary) !important;
+}
+.login-container .login-form[class] label,
+#launcher [role="heading"] { color: var(--ri-text-primary); }
+.login-container .login-form[class] small,
+#launcher small { color: var(--ri-text-secondary); }
+.login-container .login-form[class] input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+#launcher input[type="search"], #launcher [role="search"] input {
+  background: var(--ri-header-bg) !important;
+  color: var(--ri-text-primary) !important;
+  border: 1px solid var(--ri-border);
+}
+#launcher input::placeholder { color: var(--ri-text-muted); }
+#launcher [aria-label="breadcrumb"], #launcher [aria-label="Breadcrumb"],
+#launcher [role="row"] {
+  background: var(--ri-header-bg);
+  color: var(--ri-text-primary);
+}
+#launcher [role="row"]:hover, #launcher [role="option"]:hover,
+#launcher [role="tab"]:hover { background: var(--ri-hover); }
+#launcher [role="tab"][aria-selected="true"],
+[data-testid="app-header"] [aria-current="page"] {
+  color: var(--ri-accent) !important;
+  border-bottom: 2px solid var(--ri-accent);
+}
+#launcher :focus-visible, .login-container .login-form[class] :focus-visible,
+[data-testid="app-header"] :focus-visible {
+  outline: 2px solid var(--ri-accent);
+  outline-offset: 3px;
+}
+/* Confirmed by read-only inspection of the existing RAS 22 prototype DOM. */
+#launcher .launcher-tabs .tab { color: var(--ri-text-secondary) !important; }
+#launcher .launcher-tabs .tab:hover,
+#launcher .launcher-tabs .tab.current { color: var(--ri-text-primary) !important; }
+#launcher .tab.current::after { background: var(--ri-accent) !important; border-radius: 4px; }
+#launcher [data-testid="apps-launcher-search"] input {
+  background: var(--ri-header-bg) !important;
+  color: var(--ri-text-primary) !important;
+  border: 1px solid var(--ri-border);
+  border-radius: 10px;
+}
+#launcher .breadcrumbs, #launcher .launcher-breadcrumb-root {
+  background: var(--ri-header-bg) !important;
+  color: var(--ri-text-secondary) !important;
+}
+#launcher .launcher-breadcrumb-root a { color: var(--ri-text-secondary) !important; }
+#launcher .list .app, #launcher .tile .app { border-radius: 10px; }
+#launcher .list .app:hover, #launcher .tile .app:hover { background: var(--ri-hover) !important; }
+#launcher [data-testid="apps-application-name"] { color: var(--ri-text-primary) !important; }
+#launcher [data-testid="apps-application-description"] { color: var(--ri-text-muted) !important; }
+.login-container .login-form[class] h1 { color: var(--ri-text-primary) !important; }
+.login-container .login-form[class] .logon-message { color: var(--ri-text-secondary) !important; }
+.login-container .login-form[class] input { border-radius: 12px; }
+.login-container .login-form[class] .button { border-radius: 11px; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-testid="app-header"], .login-container .login-form[class], #launcher {
+    background: var(--ri-fallback-bg) !important;
+  }
+}
+/* No wallpaper, image URL, content, favicon, title or bundle overrides. */

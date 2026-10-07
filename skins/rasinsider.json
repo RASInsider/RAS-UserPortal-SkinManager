@@ -1,0 +1,19 @@
+{
+  "SchemaVersion": 1,
+  "Name": "RASInsider",
+  "Header": "#090F20",
+  "HeaderOpacity": 0.88,
+  "PanelStart": "#090F20",
+  "StartOpacity": 0.94,
+  "PanelMiddle": "#122346",
+  "MiddleOpacity": 0.9,
+  "PanelEnd": "#201C43",
+  "EndOpacity": 0.88,
+  "Accent": "#7BAEFF",
+  "Border": "#4391FF",
+  "Primary": "#FFFFFF",
+  "SecondaryOpacity": 0.72,
+  "MutedOpacity": 0.55,
+  "Blur": 28,
+  "Radius": 22
+}
