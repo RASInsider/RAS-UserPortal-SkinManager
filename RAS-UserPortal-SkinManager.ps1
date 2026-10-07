@@ -20,7 +20,7 @@ param(
     [uint32[]]$SiteId,
     [uint32[]]$GatewayId,
     [switch]$AllSites,
-    [ValidateSet('Dark Glass','Midnight Blue','Light Glass','RASInsider','Custom')][string]$Preset = 'Dark Glass',
+    [ValidateSet('Dark Glass','Midnight Blue','Light Glass','RASInsider','Graphite','Forest','Warm Ivory','Bordeaux','Aubergine','Liquid Glass','Ruby','Custom')][string]$Preset = 'Dark Glass',
     [string]$SkinFile,
     [string]$PortalRoot = 'C:\Program Files (x86)\Parallels\ApplicationServer\2XHTML5Gateway\www',
     [string]$IndexRelativePath = 'index.html',
@@ -33,9 +33,17 @@ param(
     [string]$RecoverTransaction
 )
 
-$script:RIVersion = '0.1.0'
+$script:RIVersion = '0.1.1-dev'
 $script:RIBegin = '<!-- RASINSIDER-SKIN-MANAGER:BEGIN -->'
 $script:RIEnd = '<!-- RASINSIDER-SKIN-MANAGER:END -->'
+
+function Test-RIAllowedVersion {
+    [CmdletBinding()]
+    param([AllowNull()][AllowEmptyString()][string]$Version)
+    # RAS may report major/minor only, with the build in parentheses.
+    return ($Version -match '^21\.2(?:\.\d+)*(?:\s+\(build \d+\))?$' -or
+        ($Version -match '^22\.0(?:\.|\b)' -and $Version -match '\b28102\b'))
+}
 
 function Get-RIPreset {
     [CmdletBinding()]
@@ -65,9 +73,58 @@ function Get-RIPreset {
             $skin.Header = '#090F20'; $skin.PanelStart = '#090F20'
             $skin.PanelMiddle = '#122346'; $skin.PanelEnd = '#201C43'; $skin.Accent = '#7BAEFF'
         }
+        'Graphite' {
+            $skin.Header = '#181B20'; $skin.PanelStart = '#181B20'
+            $skin.PanelMiddle = '#22262D'; $skin.PanelEnd = '#292E36'
+            $skin.Accent = '#54C6BE'; $skin.Border = '#4B535F'; $skin.Primary = '#F4F6F8'
+        }
+        'Forest' {
+            $skin.Header = '#10241F'; $skin.PanelStart = '#10241F'
+            $skin.PanelMiddle = '#19332B'; $skin.PanelEnd = '#203C33'
+            $skin.Accent = '#99C7AC'; $skin.Border = '#567769'; $skin.Primary = '#F0F7F3'
+        }
+        'Warm Ivory' {
+            $skin.Header = '#FAF8F3'; $skin.PanelStart = '#FAF8F3'
+            $skin.PanelMiddle = '#F4F0E8'; $skin.PanelEnd = '#EDE7DC'
+            $skin.Accent = '#805B35'; $skin.Border = '#C9BCA8'; $skin.Primary = '#302C27'
+        }
+        'Bordeaux' {
+            $skin.Header = '#21191D'; $skin.PanelStart = '#21191D'
+            $skin.PanelMiddle = '#2D2027'; $skin.PanelEnd = '#39252E'
+            $skin.Accent = '#D6A2B4'; $skin.Border = '#7B5968'; $skin.Primary = '#FAF2F5'
+        }
+        'Aubergine' {
+            $skin.Header = '#292036'; $skin.PanelStart = '#322646'
+            $skin.PanelMiddle = '#443458'; $skin.PanelEnd = '#594471'
+            $skin.Accent = '#D3B8ED'; $skin.Border = '#9276AE'; $skin.Primary = '#FAF5FF'
+        }
+        'Liquid Glass' {
+            $skin.Header = '#EEF4FC'; $skin.PanelStart = '#FFFFFF'
+            $skin.PanelMiddle = '#EDF4FC'; $skin.PanelEnd = '#F4F7FC'
+            $skin.Accent = '#0065D0'; $skin.Border = '#FFFFFF'; $skin.Primary = '#17283D'
+            $skin.HeaderOpacity = 0.78; $skin.StartOpacity = 0.70
+            $skin.MiddleOpacity = 0.64; $skin.EndOpacity = 0.58
+            $skin.SecondaryOpacity = 0.80; $skin.MutedOpacity = 0.76
+            $skin.Blur = 36; $skin.Radius = 30
+        }
+        'Ruby' {
+            $skin.Header = '#171316'; $skin.PanelStart = '#1B171B'
+            $skin.PanelMiddle = '#302026'; $skin.PanelEnd = '#541F2C'
+            $skin.Accent = '#FF4053'; $skin.Border = '#AD4051'; $skin.Primary = '#FFF7F8'
+            $skin.HeaderOpacity = 0.96; $skin.StartOpacity = 0.96
+            $skin.MiddleOpacity = 0.94; $skin.EndOpacity = 0.92
+            $skin.SecondaryOpacity = 0.78; $skin.MutedOpacity = 0.68
+        }
         'Dark Glass' { }
         'Custom' { }
         default { throw "Unknown preset: $Name" }
+    }
+    if ($Name -in @('Graphite','Forest','Warm Ivory','Bordeaux','Aubergine')) {
+        $skin.HeaderOpacity = 0.96; $skin.StartOpacity = 0.96
+        $skin.MiddleOpacity = 0.96; $skin.EndOpacity = 0.96
+        $skin.SecondaryOpacity = 0.78; $skin.MutedOpacity = 0.68
+        if ($Name -eq 'Warm Ivory') { $skin.SecondaryOpacity = 0.85; $skin.MutedOpacity = 0.78 }
+        if ($Name -eq 'Aubergine') { $skin.SecondaryOpacity = 0.82 }
     }
     [PSCustomObject]$skin
 }
@@ -218,6 +275,24 @@ function Get-RICss {
 }
 /* No wallpaper, image URL, content, favicon, title or bundle overrides. */
 '@
+    if ($Skin.Name -eq 'Liquid Glass') {
+        # CSS-only glass highlights; RAS remains the owner of all branding assets.
+        $body += @'
+
+.login-container .login-form[class], #launcher {
+  box-shadow: inset 0 2px 1px rgba(255,255,255,.90), inset 1px 0 1px rgba(255,255,255,.70), inset 0 -1px 1px rgba(255,255,255,.55), 0 22px 55px rgba(16,39,68,.25);
+}
+[data-testid="app-header"] {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.85);
+}
+#launcher input, #launcher .launcher-search input {
+  background: rgba(255,255,255,.65) !important;
+  border: 1px solid rgba(255,255,255,.85) !important;
+  border-radius: 24px !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.85);
+}
+'@
+    }
     "/* RASInsider Skin Manager $script:RIVersion | $($Skin.Name) | MIT */`n:root {`n" + ($lines -join "`n") + "`n" + $body.Replace("`r`n","`n") + "`n"
 }
 
@@ -838,7 +913,7 @@ function Invoke-RIMain {
         $operation = $Action
         if ($interactive) {
             Write-Host "`nRASInsider RAS User Portal Skin Manager $script:RIVersion"
-            Write-Host 'Independent, unsupported community preview. Baseline: RAS 22.0 TP build 28102.'
+            Write-Host 'Independent, unsupported community preview. Allowed: RAS 21.2.x and 22.0 TP build 28102. RAS 21.2.x deployment validation pending.'
             Write-Host '[1] Install / Change skin'
             Write-Host '[2] Re-apply current skin'
             Write-Host '[3] Restore Original'
@@ -870,8 +945,8 @@ function Invoke-RIMain {
             if (-not $MappingValidated) { throw 'Validate physical PortalRoot/index mapping to /userportal/ in your lab, then use -MappingValidated. No deployment attempted.' }
             foreach ($node in $selected) {
                 if (-not $node.Enabled -or $node.Mode -ne 'Normal' -or $node.StatusError -or $node.AgentState -ne 'OK') { throw "Gateway is not an enabled, healthy Normal-mode target: $($node.Server). No portal changes." }
-                if ($node.AgentVersion -notmatch '^22\.0(?:\.|\b)' -or $node.AgentVersion -notmatch '\b28102\b') {
-                    if (-not $AllowUnverifiedBuild) { throw "Unverified build on $($node.Server): $($node.AgentVersion). Use -AllowUnverifiedBuild only for an explicitly reviewed lab." }
+                if (-not (Test-RIAllowedVersion $node.AgentVersion)) {
+                    if (-not $AllowUnverifiedBuild) { throw "Version outside the allowed baseline on $($node.Server): $($node.AgentVersion). Use -AllowUnverifiedBuild only for an explicitly reviewed lab." }
                     Write-Warning "Unverified RAS build: $($node.Server) $($node.AgentVersion)"
                 }
             }
@@ -882,12 +957,19 @@ function Invoke-RIMain {
                 $skin = Get-Content -LiteralPath $SkinFile -Raw | ConvertFrom-Json -ErrorAction Stop
                 $null = Test-RISkin $skin
             } elseif ($interactive) {
-                Write-Host 'Skins: [1] Dark Glass [2] Midnight Blue [3] Light Glass [4] RASInsider [5] Custom'
+                Write-Host 'Skins:'
+                Write-Host ' [1] Dark Glass     [2] Midnight Blue  [3] Light Glass   [4] RASInsider'
+                Write-Host ' [5] Custom         [6] Graphite       [7] Forest        [8] Warm Ivory'
+                Write-Host ' [9] Bordeaux      [10] Aubergine     [11] Liquid Glass [12] Ruby'
                 $skinChoice = Read-Host 'Skin'
                 switch ($skinChoice) {
                     '1' { $skin = Get-RIPreset 'Dark Glass' } '2' { $skin = Get-RIPreset 'Midnight Blue' }
                     '3' { $skin = Get-RIPreset 'Light Glass' } '4' { $skin = Get-RIPreset 'RASInsider' }
-                    '5' { $skin = Read-RICustomSkin } default { throw 'Invalid skin selection.' }
+                    '5' { $skin = Read-RICustomSkin }
+                    '6' { $skin = Get-RIPreset 'Graphite' } '7' { $skin = Get-RIPreset 'Forest' }
+                    '8' { $skin = Get-RIPreset 'Warm Ivory' } '9' { $skin = Get-RIPreset 'Bordeaux' }
+                    '10' { $skin = Get-RIPreset 'Aubergine' } '11' { $skin = Get-RIPreset 'Liquid Glass' }
+                    '12' { $skin = Get-RIPreset 'Ruby' } default { throw 'Invalid skin selection.' }
                 }
             } else {
                 if ($Preset -eq 'Custom') { throw 'Non-interactive Custom requires -SkinFile.' }

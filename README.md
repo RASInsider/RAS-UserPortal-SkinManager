@@ -2,7 +2,9 @@
 
 **Independent community project by RASInsider. Not affiliated with, endorsed by or supported by Parallels. This modifies local User Portal presentation and is not an official supported extension.**
 
-**Preview v0.1.0. Recorded prototype baseline: Parallels RAS 22.0 Technical Preview build 28102 only.** The release's Windows deployment and installed RASAdmin integration still require live lab validation. Read [validation evidence](docs/VALIDATION.md) before using it. No compatibility with other builds or production support is claimed.
+**Development preview 0.1.1-dev. Independent and unsupported.** The current standalone script allows RAS 21.2.x and RAS 22.0 Technical Preview build 28102. Allowing a version is not a claim that every build has been tested. The original presentation baseline is build 28102. The seven additional themes have passed local code/configuration checks; live rendering on RAS remains to be verified. Read [validation evidence](docs/VALIDATION.md).
+
+The existing **v0.1.0** tag/package is unchanged and does not contain this development update. For the new themes, download the current source PS1 from this branch after review; do not expect the old release archive to contain them.
 
 A standalone PowerShell manager for consistent presentation across discovered RAS Secure Gateways. RAS owns logos, wallpaper, favicon, title and text; this tool owns an independent stylesheet and a small marked HTML hook. Compiled product bundles and RAS configuration are untouched.
 
@@ -38,7 +40,7 @@ The script is unsigned in this preview. Follow your organization's signing/execu
 | Status | Read-only file/hash/config inspection per discovered target |
 | Exit | Leave the manager |
 
-Embedded presets: **Dark Glass, Midnight Blue, Light Glass, RASInsider, Custom**. The main PS1 requires no sibling files; JSON examples are optional imports. Re-apply preserves per-Gateway saved skins rather than silently homogenizing intentionally different Sites. Use Install/Change with one preset to make a selected pool consistent.
+Embedded presets: **Dark Glass, Midnight Blue, Light Glass, RASInsider, Graphite, Forest, Warm Ivory, Bordeaux, Aubergine, Liquid Glass and Ruby**, plus **Custom**. See [theme palettes and exact menu choices](docs/THEMES.md). The main PS1 requires no sibling files; JSON examples are optional imports. Re-apply preserves per-Gateway saved skins rather than silently homogenizing intentionally different Sites. Use Install/Change with one preset to make a selected pool consistent.
 
 ```powershell
 # Select multiple Sites or a discovered Gateway subset.
