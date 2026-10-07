@@ -20,6 +20,16 @@ The filesystem checks cover all embedded presets; CSS injection, finite/range/ty
 
 Pester includes actual local filesystem workers with **mocked transport** representing **two Gateways in two Sites**. It verifies all-target pre-flight failure with no Prepare/Commit, all-target staging before the first live fixture commit, all-target verification, rollback after the second target fails, honest partial rollback/recovery journals, drift before preparation and reviewed prototype adoption. These are simulations, not Windows/RAS Farm tests. The serialized remote worker is parsed as well.
 
+## Executed GitHub Windows checks
+
+[Windows CI run 37590811033](https://github.com/RASInsider/RAS-UserPortal-SkinManager/actions/runs/37590811033) completed successfully on **Microsoft Windows Server 2025** (`windows-2025-vs2026` runner image). It tested implementation commit `9af5b8c56d0042ea2a36f85a7d315087d6d9a672`:
+
+- 34 / 34 parser/filesystem fixture checks passed.
+- Pester 6.2.0: 14 / 14 tests passed.
+- PSScriptAnalyzer 1.25.0: passed with the documented repository settings, including 5.1 syntax compatibility.
+
+This adds real Windows **local fixture** execution of file replacement/transaction code. It does not test the Parallels install directory's actual ACLs, installed RASAdmin, WinRM remoting or a live RAS Farm. No Gateways or RAS Theme were modified. The subsequent evidence-only documentation change does not alter tested implementation code.
+
 ## Recorded prototype and read-only lab inspection
 
 The user's recorded baseline is **Parallels RAS 22.0 Technical Preview build 28102**, with static root `C:\Program Files (x86)\Parallels\ApplicationServer\2XHTML5Gateway\www`, independent `/userportal/rasinsider.css`, dark/glass header/login/launcher, blue active underline and supporting controls. This was prior user lab work.
