@@ -1,0 +1,19 @@
+{
+  "SchemaVersion": 1,
+  "Name": "Warm Ivory",
+  "Header": "#FAF8F3",
+  "HeaderOpacity": 0.96,
+  "PanelStart": "#FAF8F3",
+  "StartOpacity": 0.96,
+  "PanelMiddle": "#F4F0E8",
+  "MiddleOpacity": 0.96,
+  "PanelEnd": "#EDE7DC",
+  "EndOpacity": 0.96,
+  "Accent": "#805B35",
+  "Border": "#C9BCA8",
+  "Primary": "#302C27",
+  "SecondaryOpacity": 0.85,
+  "MutedOpacity": 0.78,
+  "Blur": 28,
+  "Radius": 22
+}

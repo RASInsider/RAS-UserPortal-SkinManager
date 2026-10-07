@@ -1,0 +1,19 @@
+{
+  "SchemaVersion": 1,
+  "Name": "Aubergine",
+  "Header": "#292036",
+  "HeaderOpacity": 0.96,
+  "PanelStart": "#322646",
+  "StartOpacity": 0.96,
+  "PanelMiddle": "#443458",
+  "MiddleOpacity": 0.96,
+  "PanelEnd": "#594471",
+  "EndOpacity": 0.96,
+  "Accent": "#D3B8ED",
+  "Border": "#9276AE",
+  "Primary": "#FAF5FF",
+  "SecondaryOpacity": 0.82,
+  "MutedOpacity": 0.68,
+  "Blur": 28,
+  "Radius": 22
+}

@@ -1,0 +1,19 @@
+{
+  "SchemaVersion": 1,
+  "Name": "Forest",
+  "Header": "#10241F",
+  "HeaderOpacity": 0.96,
+  "PanelStart": "#10241F",
+  "StartOpacity": 0.96,
+  "PanelMiddle": "#19332B",
+  "MiddleOpacity": 0.96,
+  "PanelEnd": "#203C33",
+  "EndOpacity": 0.96,
+  "Accent": "#99C7AC",
+  "Border": "#567769",
+  "Primary": "#F0F7F3",
+  "SecondaryOpacity": 0.78,
+  "MutedOpacity": 0.68,
+  "Blur": 28,
+  "Radius": 22
+}

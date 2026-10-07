@@ -1,0 +1,19 @@
+{
+  "SchemaVersion": 1,
+  "Name": "Graphite",
+  "Header": "#181B20",
+  "HeaderOpacity": 0.96,
+  "PanelStart": "#181B20",
+  "StartOpacity": 0.96,
+  "PanelMiddle": "#22262D",
+  "MiddleOpacity": 0.96,
+  "PanelEnd": "#292E36",
+  "EndOpacity": 0.96,
+  "Accent": "#54C6BE",
+  "Border": "#4B535F",
+  "Primary": "#F4F6F8",
+  "SecondaryOpacity": 0.78,
+  "MutedOpacity": 0.68,
+  "Blur": 28,
+  "Radius": 22
+}
