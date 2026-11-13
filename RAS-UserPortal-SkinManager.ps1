@@ -33,7 +33,7 @@ param(
     [string]$RecoverTransaction
 )
 
-$script:RIVersion = '0.1.1-dev'
+$script:RIVersion = '0.1.2-dev'
 $script:RIBegin = '<!-- RASINSIDER-SKIN-MANAGER:BEGIN -->'
 $script:RIEnd = '<!-- RASINSIDER-SKIN-MANAGER:END -->'
 
@@ -42,7 +42,7 @@ function Test-RIAllowedVersion {
     param([AllowNull()][AllowEmptyString()][string]$Version)
     # RAS may report major/minor only, with the build in parentheses.
     return ($Version -match '^21\.2(?:\.\d+)*(?:\s+\(build \d+\))?$' -or
-        ($Version -match '^22\.0(?:\.|\b)' -and $Version -match '\b28102\b'))
+        ($Version -match '^22\.0(?:\.|\b)' -and $Version -match '\b(?:28102|28160|28165)\b'))
 }
 
 function Get-RIPreset {
@@ -915,7 +915,7 @@ function Invoke-RIMain {
         $operation = $Action
         if ($interactive) {
             Write-Host "`nRASInsider RAS User Portal Skin Manager $script:RIVersion"
-            Write-Host 'Independent, unsupported community preview. Allowed: RAS 21.2.x and 22.0 TP build 28102. RAS 21.2.x deployment validation pending.'
+            Write-Host 'Independent, unsupported community preview. Allowed: RAS 21.2.x and 22.0 builds 28102 / 28160 / 28165. RAS 21.2.x deployment validation pending.'
             Write-Host '[1] Install / Change skin'
             Write-Host '[2] Re-apply current skin'
             Write-Host '[3] Restore Original'
@@ -982,8 +982,9 @@ function Invoke-RIMain {
         $targets = @(); $runLock = $null
         try {
             foreach ($node in $selected) {
-                $sessionArgs = @{ ComputerName = $node.Server; Authentication = 'Negotiate'; ErrorAction = 'Stop' }
-                if ($RemoteCredential) { $sessionArgs.Credential = $RemoteCredential }
+                $sessionArgs = @{ ComputerName = $node.Server; ErrorAction = 'Stop' }
+                # Domain-joined gateways authenticate with the Kerberos default; force Negotiate only with explicit credentials (workgroup / cross-domain).
+                if ($RemoteCredential) { $sessionArgs.Credential = $RemoteCredential; $sessionArgs.Authentication = 'Negotiate' }
                 if ($UseSSL) { $sessionArgs.UseSSL = $true }
                 if ($RemotePort) { $sessionArgs.Port = $RemotePort }
                 try { $session = New-PSSession @sessionArgs }
