@@ -1,6 +1,11 @@
 # Changelog
 
-## Unreleased — 0.1.1-dev
+## Unreleased — 0.1.2-dev
+
+- Accept RAS 22.0 GA build 28160 and hotfix build 28165 in the version gate, alongside the existing 22.0 TP build 28102. `-AllowUnverifiedBuild` is no longer required for these builds.
+- Use the domain Kerberos default for WinRM remoting and apply explicit Negotiate only when `-RemoteCredential` is supplied. Fixes "WinRM unavailable" on domain-joined gateways, where forced Negotiate fell back to NTLM-over-HTTP (blocked unless the host is in TrustedHosts or HTTPS is used), while keeping Negotiate for workgroup / cross-domain credentialed runs.
+
+## 0.1.1-dev
 
 - Synchronize the user's standalone Desktop PS1, including the previously added RAS 21.2.x version gate. Gateway API strings such as `21.2 (build 27429)` are accepted. RAS 22.0 TP remains restricted to build 28102 unless explicitly overridden.
 - Add seven embedded presets: Graphite, Forest, Warm Ivory, Bordeaux, Aubergine, Liquid Glass and Ruby. Total: 11 built-in themes plus Custom.

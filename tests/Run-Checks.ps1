@@ -26,7 +26,7 @@ $fixture = Join-Path $root ('ri-tests-' + [guid]::NewGuid().ToString('N'))
 $previousProgramData = $env:ProgramData
 try {
     $null = [IO.Directory]::CreateDirectory($fixture)
-    foreach ($version in '21.2 (build 27429)','21.2.2 (build 27429)','21.2.0','22.0 (build 28102)') {
+    foreach ($version in '21.2 (build 27429)','21.2.2 (build 27429)','21.2.0','22.0 (build 28102)','22.0 (build 28160)','22.0 (build 28165)') {
         Assert-Check (Test-RIAllowedVersion $version) "Allow RAS version: $version"
     }
     foreach ($version in '21.20.2','21.1.2','21.3.0','22.0 (build 27429)','', '21.2.bad') {
